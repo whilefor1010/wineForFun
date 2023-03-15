@@ -10,15 +10,61 @@
 
 <header th:insert="blocks/header :: header"></header>
 
-<p th:text="'Hello, ' + ${name} + '!'" />
 
-<ul class="dropdown-menu dropdown-menu-dark position-static d-grid gap-1 p-2 rounded-3 mx-0 border-0 shadow w-220px">
-    <li><a class="dropdown-item rounded-2 active" href="#">Action</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">Another action</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item rounded-2" href="#">Separated link</a></li>
-</ul>
+<section class="description-section" id="learn">
+    <div class="container border-bottom">
+        <div class="row">
+            <div class="column">
+                <div class="content">
+                    <h1>Select your wine</h1>
+                    <p>Red for meat, white... for fish?</p>
+                    <p>Boriiiing!</p>
+                    <p>Choose a wine for the weather, mood or event ;)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container border-bottom">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top"  width="100%" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="true">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#8a1526"></rect>
+                        <text x="30%" y="20%" fill="#eceeef" dy=".3em">take short quiz</text>
+                        <text x="30%" y="50%" fill="#eceeef" dy=".3em">and we will pick</text>
+                        <text x="30%" y="80%" fill="#eceeef" dy=".3em">your own wine:)</text></svg>
+                    <div class="card-body">
+
+                        <a href="/quiz" class="nav-link px-2 link-dark">Quiz?..</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top"  width="100%" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="true">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#8a1526"></rect>
+                        <text x="30%" y="20%" fill="#eceeef" dy=".3em">use filters, sort by preference</text>
+                        <text x="30%" y="50%" fill="#eceeef" dy=".3em">and raiting and pick your own wine :)</text>
+                    <div class="card-body">
+
+                        <a href="/catalog" class="nav-link px-2 link-dark">Ok, where my catalog?..</a>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
 
 <footer th:insert="blocks/footer :: footer"></footer>
 

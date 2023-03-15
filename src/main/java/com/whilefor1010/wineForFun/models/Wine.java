@@ -1,10 +1,10 @@
-package com.whilefor.blogITP.models;
+package com.whilefor1010.wineForFun.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 
 
 @Getter
@@ -13,11 +13,11 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "post", schema = "public")
-public class Post {
+public class Wine {
 
     @Id
-    @SequenceGenerator(name = "postIdSeq", sequenceName = "post_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postIdSeq")
+    @SequenceGenerator(name = "wineIdSeq", sequenceName = "wine_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wineIdSeq")
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -25,15 +25,15 @@ public class Post {
     private String title, anons, full_text;
 
     @Column
-    private int views;
+    private int alcohol;
 
-    public Post(String title, String anons, String full_text) {
+    public Wine(String title, String anons, String full_text) {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
     }
 
-    public Post(Long id, String title, String anons, String full_text) {
+    public Wine(Long id, String title, String anons, String full_text) {
         this.id = id;
         this.title = title;
         this.anons = anons;

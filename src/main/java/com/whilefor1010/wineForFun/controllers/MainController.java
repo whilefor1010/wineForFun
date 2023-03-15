@@ -9,14 +9,14 @@ public class MainController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("title", "Главная страница");
+        model.addAttribute("title", "Main");
         model.addAttribute("name", "my dear friend");
         return "home";
     }
 
     @GetMapping("/error")
     public String itsError(Model model) {
-        model.addAttribute("title", "Главная страница");
+        model.addAttribute("title", "Main");
         model.addAttribute("name", "my dear friend, 404 is coming...");
         return "home";
     }

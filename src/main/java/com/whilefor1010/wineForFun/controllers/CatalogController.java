@@ -1,7 +1,8 @@
-package com.whilefor.blogITP.controllers;
+package com.whilefor1010.wineForFun.controllers;
 
-import com.whilefor.blogITP.models.Post;
-import com.whilefor.blogITP.repo.PostRepository;
+
+import com.whilefor1010.wineForFun.models.Wine;
+import com.whilefor1010.wineForFun.repo.WineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +18,15 @@ import java.util.Optional;
 public class CatalogController {
 
     @Autowired
-    private PostRepository postRepository;
+    private WineRepository wineRepository;
 
     @GetMapping("/catalog")
     public String catalog(Model model) {
 
-        Iterable<Post> posts = postRepository.findAll();
+        Iterable<Wine> wines = wineRepository.findAll();
 
         model.addAttribute("title", "Select your wine");
-        model.addAttribute("posts", posts);
+        model.addAttribute("wines", wines);
         return "catalog";
     }
 
@@ -36,13 +37,13 @@ public class CatalogController {
     }
 
     @PostMapping("/catalog/add")
-    public String catalogAddPost(@RequestParam String title,
+    public String catalogAddWine(@RequestParam String title,
                                  @RequestParam String anons,
                                  @RequestParam String full_text,
                                  Model model){
 
-        Post post1 = new Post(title, anons, full_text);
-        postRepository.save(post1);
+        Wine wine= new Wine(title, anons, full_text);
+        wineRepository.save(wine);
 
         return "redirect:/catalog";
 
@@ -51,63 +52,63 @@ public class CatalogController {
     @GetMapping("/catalog/{id}")
     public String catalogDetails(@PathVariable(value = "id") long curId, Model model) {
 
-       if (!postRepository.existsById(curId)){
+       if (!wineRepository.existsById(curId)){
            return "redirect:/catalog";
        }
 
-        Optional<Post> post = postRepository.findById(curId);
+        Optional<Wine> wine = wineRepository.findById(curId);
 
-        ArrayList<Post> res = new ArrayList<>();
+        ArrayList<Wine> res = new ArrayList<>();
 
-        post.ifPresent(res::add);
+        wine.ifPresent(res::add);
 
-        model.addAttribute("post", res);
+        model.addAttribute("wine", res);
         return "catalog-details";
     }
 
     @GetMapping("/catalog/{id}/edit")
     public String catalogEdit(@PathVariable(value = "id") long curId, Model model) {
 
-        if (!postRepository.existsById(curId)){
+        if (!wineRepository.existsById(curId)){
             return "redirect:/catalog";
         }
 
-        Optional<Post> post = postRepository.findById(curId);
+        Optional<Wine> wine = wineRepository.findById(curId);
 
-        ArrayList<Post> res = new ArrayList<>();
+        ArrayList<Wine> res = new ArrayList<>();
 
-        post.ifPresent(res::add);
+        wine.ifPresent(res::add);
 
-        model.addAttribute("post", res);
+        model.addAttribute("wine", res);
         return "catalog-edit";
     }
 
     @PostMapping("/catalog/{id}/edit")
-    public String catalogEditPost(@PathVariable(value = "id") long curId,
+    public String catalogEditWine(@PathVariable(value = "id") long curId,
                                      @RequestParam String title,
                                      @RequestParam String anons,
                                      @RequestParam String full_text,
                                      Model model){
 
-        Post post = postRepository.findById(curId).orElseThrow();
+        Wine wine = wineRepository.findById(curId).orElseThrow();
 
-        post.setTitle(title);
-        post.setAnons(anons);
-        post.setFull_text(full_text);
+        wine.setTitle(title);
+        wine.setAnons(anons);
+        wine.setFull_text(full_text);
 
-        postRepository.save(post);
+        wineRepository.save(wine);
 
         return "redirect:/catalog";
 
     }
 
     @PostMapping("/catalog/{id}/remove")
-    public String catalogDeletePost(@PathVariable(value = "id") long curId,
+    public String catalogDeleteWine(@PathVariable(value = "id") long curId,
                                         Model model){
 
-        Post post = postRepository.findById(curId).orElseThrow();
+        Wine wine = wineRepository.findById(curId).orElseThrow();
 
-        postRepository.delete(post);
+        wineRepository.delete(wine);
 
         return "redirect:/catalog";
 
