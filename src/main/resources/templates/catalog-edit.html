@@ -16,7 +16,7 @@
 
   <form method="post">
 
-    <div th:each="el : ${post}">
+    <div th:each="el : ${wine}">
       <input type="text" th:value="${el.title}" name="title"     placeholder="title..." class="form-control"><br>
       <input type="text" th:value="${el.anons}" name="anons"     placeholder="anons..." class="form-control"><br>
       <textarea name="full_text" th:text="${el.full_text}" placeholder="details..." class="form-control"></textarea><br>
