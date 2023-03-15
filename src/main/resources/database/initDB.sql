@@ -1,7 +1,8 @@
-CREATE TABLE IF NOT EXISTS post
+CREATE TABLE IF NOT EXISTS wine
 (
-    id    BIGSERIAL PRIMARY KEY ,
-    name  VARCHAR(200) NOT NULL ,
-    email VARCHAR(254) NOT NULL ,
-    phone VARCHAR(20)  NOT NULL
+    id BIGSERIAL PRIMARY KEY ,
+    title  text,
+    anons text,
+    full_text text,
+	alcohol INT
 );

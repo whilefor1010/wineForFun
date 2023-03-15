@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "post", schema = "public")
+@Table(name = "wine", schema = "public")
 public class Wine {
 
     @Id
