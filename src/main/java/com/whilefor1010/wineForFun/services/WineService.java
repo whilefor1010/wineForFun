@@ -1,12 +1,11 @@
 package com.whilefor1010.wineForFun.services;
 
 import com.whilefor1010.wineForFun.models.Wine;
-import com.whilefor1010.wineForFun.repo.WineRepository;
 import com.whilefor1010.wineForFun.repo.WineRepositoryPages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import utils.WineUtils;
+import com.whilefor1010.wineForFun.utils.WineUtils;
 
 import java.util.Collections;
 import java.util.List;

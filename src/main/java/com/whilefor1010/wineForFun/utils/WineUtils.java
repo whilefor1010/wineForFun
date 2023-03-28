@@ -1,4 +1,4 @@
-package utils;
+package com.whilefor1010.wineForFun.utils;
 
 import com.whilefor1010.wineForFun.models.Wine;
 import com.whilefor1010.wineForFun.repo.WineRepository;
