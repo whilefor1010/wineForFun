@@ -21,8 +21,12 @@
       <input type="text" th:value="${el.anons}" name="anons"     placeholder="anons..." class="form-control"><br>
       <textarea name="full_text" th:text="${el.full_text}" placeholder="details..." class="form-control"></textarea><br>
 
+      <input type="hidden"
+             th:name="${_csrf.parameterName}"
+             th:value="${_csrf.token}"/>
+
       <button type="submit" class="btn btn-success">Save</button>
-    </div>>
+    </div>
   </form>
 
 </div>
