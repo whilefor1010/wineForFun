@@ -7,6 +7,7 @@ import com.whilefor1010.wineForFun.services.WineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,23 +27,17 @@ public class CatalogController {
     @Autowired
     private WineService wineService;
 
-    @GetMapping("/catalogSkip")
-    public String catalog(Model model) {
-
-        Iterable<Wine> wines = wineRepository.findAll();
-
-        model.addAttribute("title", "Select your wine");
-        model.addAttribute("wines", wines);
-        return "catalog";
-    }
-
     @GetMapping("/catalog/add")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogAdd(Model model) {
 
        return "catalog-add";
     }
 
     @PostMapping("/catalog/add")
+    //@PreAuthorize("hasAnyRole('ADMIN'")
+    //@PreAuthorize("hasAuthority('wines:read')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogAddWine(@RequestParam String title,
                                  @RequestParam String anons,
                                  @RequestParam String full_text,
@@ -73,6 +68,7 @@ public class CatalogController {
     }
 
     @GetMapping("/catalog/{id}/edit")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogEdit(@PathVariable(value = "id") long curId, Model model) {
 
         if (!wineRepository.existsById(curId)){
@@ -90,6 +86,7 @@ public class CatalogController {
     }
 
     @PostMapping("/catalog/{id}/edit")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogEditWine(@PathVariable(value = "id") long curId,
                                      @RequestParam String title,
                                      @RequestParam String anons,
@@ -109,6 +106,7 @@ public class CatalogController {
     }
 
     @PostMapping("/catalog/{id}/remove")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogDeleteWine(@PathVariable(value = "id") long curId,
                                         Model model){
 
@@ -119,7 +117,6 @@ public class CatalogController {
         return "redirect:/catalog";
 
     }
-
 
     @RequestMapping(value = "/listWines", method = RequestMethod.GET)
     public String listWines(
@@ -145,7 +142,6 @@ public class CatalogController {
         return "listWines.html";
     }
 
-   // @GetMapping("/catalog")
    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String catalogOf(
             Model model,
@@ -179,6 +175,16 @@ public class CatalogController {
 
 
         return "catalogOf";
+    }
+
+    @GetMapping("/catalogSkip")
+    public String catalog(Model model) {
+
+        Iterable<Wine> wines = wineRepository.findAll();
+
+        model.addAttribute("title", "Select your wine");
+        model.addAttribute("wines", wines);
+        return "catalog";
     }
 
 }

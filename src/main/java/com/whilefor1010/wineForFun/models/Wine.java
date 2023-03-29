@@ -1,14 +1,10 @@
 package com.whilefor1010.wineForFun.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -27,10 +23,14 @@ public class Wine {
     @Column
     private int alcohol;
 
+    @Column
+    private int year;
+
     public Wine(String title, String anons, String full_text) {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
+        this.year = 0;
     }
 
     public Wine(Long id, String title, String anons, String full_text) {
@@ -38,5 +38,6 @@ public class Wine {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
+        this.year = 0;
     }
 }

@@ -4,5 +4,8 @@ CREATE TABLE IF NOT EXISTS wine
     title  text,
     anons text,
     full_text text,
-	alcohol INT
+	alcohol INT,
+	year INT
 );
+
+ALTER TABLE wine ADD COLUMN IF NOT EXISTS year INT DEFAULT 0;

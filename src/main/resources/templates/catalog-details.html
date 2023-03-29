@@ -19,11 +19,15 @@
     <p th:text="${el.anons}" />
     <p th:text="${el.full_text}" />
 
+    <div sec:authorize="hasRole('ADMIN')">
+
     <a th:href="'/catalog/' + ${el.id} + '/edit'" class="btn btn-light">Edit</a>
     <br><br>
     <form th:action="'/catalog/' + ${el.id} + '/remove'" method="post">
       <button class="btn btn-danger" type="submit"> Remove </button>
     </form>
+
+    </div>
 
   </div>
 
