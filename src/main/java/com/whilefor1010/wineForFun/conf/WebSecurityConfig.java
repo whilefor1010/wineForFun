@@ -43,19 +43,17 @@ public class WebSecurityConfig {
     protected UserDetailsService userDetailsService() {
 
         UserDetails user =
-                User.withDefaultPasswordEncoder()
+                User.builder()
                         .username("user")
-                        //.password(passwordEncoder().encode("p1"))
-                        .password("p1")
+                        .password(passwordEncoder().encode("p1"))
                         .roles(Role.USER.name())
                         //.authorities(Role.USER.getAuthorities())
                         .build();
 
         UserDetails admin =
-                User.withDefaultPasswordEncoder()
+                User.builder()
                         .username("admin")
-                        //.password(passwordEncoder().encode("p1"))
-                        .password("p1")
+                        .password(passwordEncoder().encode("p1"))
                         .roles(Role.ADMIN.name())
                         //.authorities(Role.ADMIN.getAuthorities())
                         .build();
@@ -64,10 +62,10 @@ public class WebSecurityConfig {
         return new InMemoryUserDetailsManager(user, admin);
     }
 
-    /*@Bean
+    @Bean
     protected PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(12);
-    }*/
+    }
 
 
 

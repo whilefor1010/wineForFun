@@ -17,6 +17,7 @@
     <div th:each="el : ${wines}" class="alert alert-info mt-2">
 
         <h3 th:text="${el.title}" />
+        <p th:text="${el.year} + ' year '+${el.alcohol}+' %'" />
 
         <p th:text="${el.anons}" />
 

@@ -40,10 +40,13 @@ public class CatalogController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String catalogAddWine(@RequestParam String title,
                                  @RequestParam String anons,
+                                 @RequestParam String year,
+                                 @RequestParam String alcohol,
                                  @RequestParam String full_text,
+
                                  Model model){
 
-        Wine wine= new Wine(title, anons, full_text);
+        Wine wine= new Wine(title, anons, validateInt(year), validateInt(alcohol), full_text);
         wineRepository.save(wine);
 
         return "redirect:/catalog";
@@ -90,6 +93,8 @@ public class CatalogController {
     public String catalogEditWine(@PathVariable(value = "id") long curId,
                                      @RequestParam String title,
                                      @RequestParam String anons,
+                                     @RequestParam String year,
+                                     @RequestParam String alcohol,
                                      @RequestParam String full_text,
                                      Model model){
 
@@ -97,6 +102,8 @@ public class CatalogController {
 
         wine.setTitle(title);
         wine.setAnons(anons);
+        wine.setYear(validateInt(year));
+        wine.setAlcohol(validateInt(alcohol));
         wine.setFull_text(full_text);
 
         wineRepository.save(wine);
@@ -185,6 +192,17 @@ public class CatalogController {
         model.addAttribute("title", "Select your wine");
         model.addAttribute("wines", wines);
         return "catalog";
+    }
+
+    //TODO change to change to adequate validation
+    private static int validateInt(String string) {
+
+        int resInt = 0;
+
+        try {
+            resInt = Integer.parseInt(string);} catch (Exception e){}
+        ;
+        return resInt;
     }
 
 }

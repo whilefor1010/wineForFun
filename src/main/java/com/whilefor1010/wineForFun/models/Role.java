@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public enum Role {
     USER,
     ADMIN;
+}
+
    /* USER(Set.of(Permission.WINES_READ)),
     ADMIN(Set.of(Permission.WINES_READ, Permission.WINES_WRITE));
 
@@ -27,4 +29,4 @@ public enum Role {
                 .collect(Collectors.toSet());
     }*/
 
-}
+

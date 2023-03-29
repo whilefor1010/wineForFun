@@ -36,7 +36,7 @@
           <div th:each="el, iStat : ${winePage.content}" class="alert alert-info mt-2">
 
               <h3 th:text="${el.title}" />
-
+              <p th:text="${el.year} + ' year '+${el.alcohol}+' %'" />
               <p th:text="${el.anons}" />
 
               <a th:href="'/catalog/' + ${el.id}" class="btn btn-light">Show more...</a>

@@ -18,6 +18,7 @@
 
     <p th:text="${el.anons}" />
     <p th:text="${el.full_text}" />
+    <p th:text="${el.year} + ' year '+${el.alcohol}+' %'" />
 
     <div sec:authorize="hasRole('ADMIN')">
 

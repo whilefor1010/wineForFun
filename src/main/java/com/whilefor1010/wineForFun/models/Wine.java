@@ -1,6 +1,7 @@
 package com.whilefor1010.wineForFun.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 
@@ -18,13 +19,21 @@ public class Wine {
     private Long id;
 
     @Column
-    private String title, anons, full_text;
+    @Size(min=2)
+    private String title;
+
+    @Column
+    private String anons, full_text;
 
     @Column
     private int alcohol;
 
     @Column
     private int year;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idcolor")
+    private Color color;
 
     public Wine(String title, String anons, String full_text) {
         this.title = title;
@@ -39,5 +48,24 @@ public class Wine {
         this.anons = anons;
         this.full_text = full_text;
         this.year = 0;
+    }
+
+    public Wine(String title, String anons, int year, String full_text) {
+
+        this.title = title;
+        this.anons = anons;
+        this.full_text = full_text;
+        this.year = year;
+
+    }
+
+    public Wine(String title, String anons, int year, int alcohol, String full_text) {
+
+        this.title = title;
+        this.anons = anons;
+        this.full_text = full_text;
+        this.year = year;
+        this.alcohol = alcohol;
+
     }
 }
