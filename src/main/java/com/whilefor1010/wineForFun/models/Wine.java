@@ -19,7 +19,7 @@ public class Wine {
     private Long id;
 
     @Column
-    @Size(min=2)
+    //@Size(min=2)//TODO change to adequate validation
     private String title;
 
     @Column

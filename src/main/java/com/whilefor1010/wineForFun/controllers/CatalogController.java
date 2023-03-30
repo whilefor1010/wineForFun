@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -43,8 +44,14 @@ public class CatalogController {
                                  @RequestParam String year,
                                  @RequestParam String alcohol,
                                  @RequestParam String full_text,
-
+                                 //BindingResult bindingResult,
                                  Model model){
+
+        //TODO change to adequate validation
+        /*if (bindingResult.hasErrors()) {
+            System.out.println("BINDING RESULT ERROR");
+            return "catalog-add";
+        }*/
 
         Wine wine= new Wine(title, anons, validateInt(year), validateInt(alcohol), full_text);
         wineRepository.save(wine);
@@ -194,7 +201,7 @@ public class CatalogController {
         return "catalog";
     }
 
-    //TODO change to change to adequate validation
+    //TODO change to adequate validation
     private static int validateInt(String string) {
 
         int resInt = 0;
